@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:rop="http://www.bookegou.com/schema/rop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.bookegou.com/schema/rop http://www.bookegou.com/schema/rop/rop-1.0.xsd">
+
+	<context:annotation-config />
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    <!--扫描Spring Bean -->
+    <context:component-scan base-package="com.vbgps.rop"/>
+
+  	<!-- 启动Rop框架 -->
+    <rop:annotation-driven
+        id="router"
+        session-manager="sampleSessionManager"
+        app-secret-manager="appSecretManager"
+        service-timeout-seconds="50"
+        upload-file-max-size="500"
+        upload-file-types="png,gif,jpg"
+        core-pool-size="200"
+        max-pool-size="500"
+        queue-capacity="50"
+        keep-alive-seconds="300"
+        sign-enable="true"/>
+
+ 	<bean id="sampleSessionManager" class="com.vbgps.rop.SampleSessionManager" /> 
+
+ 	<!-- rop 签名判断拦截器 -->
+	<bean id="appSecretManager" class="com.vbgps.rop.SimpleAppSecretManager"/>
+</beans>
