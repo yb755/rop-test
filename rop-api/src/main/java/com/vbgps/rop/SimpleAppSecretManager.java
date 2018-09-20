@@ -18,13 +18,11 @@ public class SimpleAppSecretManager implements AppSecretManager {
 	}
 
 	public String getSecret(String appKey) {
-		System.out.println("use SimpleAppSecretManager!");
 		return appKeySecretMap.get(appKey);
 	}
 
 	public boolean isValidAppKey(String appKey) {
-		//return getSecret(appKey) != null;
-		 return true;
+		return getSecret(appKey) != null;
 	}
 
 }

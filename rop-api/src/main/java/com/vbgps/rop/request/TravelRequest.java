@@ -6,9 +6,7 @@ import com.rop.annotation.IgnoreSign;
 public class TravelRequest extends AbstractRopRequest {
 
 	// 用来标注该参数不需要进行签名
-	@IgnoreSign
-	private String travelPage;
-	@IgnoreSign
+	//@IgnoreSign
 	private String userName;
 
 	public String getUserName() {
@@ -17,13 +15,5 @@ public class TravelRequest extends AbstractRopRequest {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public String getTravelPage() {
-		return travelPage;
-	}
-
-	public void setTravelPage(String travelPage) {
-		this.travelPage = travelPage;
 	}
 }
