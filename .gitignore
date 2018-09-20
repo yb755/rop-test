@@ -1,0 +1,10 @@
+/target/
+*/target/
+.settings
+.project
+*/.settings
+*/.project
+*.classpath
+*.log
+logPath_IS_UNDEFINED
+*/disconf/
