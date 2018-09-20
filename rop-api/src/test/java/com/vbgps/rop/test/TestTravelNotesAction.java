@@ -2,6 +2,7 @@ package com.vbgps.rop.test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -30,8 +31,25 @@ public class TestTravelNotesAction {
 		paramValues.put("sign", sign);
 		// 业务参数 不参与签名
 		System.out.println(sign);
-		String buildGetUrl = "http://127.0.0.1:8080/rop-api/router?userName=3&appKey=100001&appSecret=" + APP_SECRET + "&method=user.getSession&v=1.0&sign=" + sign + "&format=json";
+		String buildGetUrl = builtUrl(SERVER_URL, paramValues);
 		String responseContent = new RestTemplate().getForObject(buildGetUrl, String.class, paramValues);
 		System.out.println(responseContent);
+	}
+
+	private String builtUrl(String url, Map<String, String> params) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(url);
+		sb.append("?");
+		Set<String> keys = params.keySet();
+		for (String key : keys) {
+			sb.append(key);
+			sb.append("=");
+			sb.append(params.get(key));
+			sb.append("&");
+		}
+		if (!keys.isEmpty()) {
+			sb.deleteCharAt(sb.length() - 1);
+		}
+		return sb.toString();
 	}
 }
